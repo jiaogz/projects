@@ -30,7 +30,10 @@ public class CommentPlugin extends PluginAdapter {
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         topLevelClass.getJavaDocLines().clear();
         topLevelClass.addJavaDocLine("/**");
-        topLevelClass.addJavaDocLine(" * Table: " + introspectedTable.getFullyQualifiedTable());
+        topLevelClass.addJavaDocLine(" * @describe: " + introspectedTable.getRemarks());
+        topLevelClass.addJavaDocLine(" * @author: " + "GZ.jiao");
+        topLevelClass.addJavaDocLine(" * @create: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        topLevelClass.addJavaDocLine(" * @Modifyder By: " + "");
         topLevelClass.addJavaDocLine(" */");
         return true;
     }
@@ -54,10 +57,8 @@ public class CommentPlugin extends PluginAdapter {
         String remark = introspectedColumn.getRemarks();
         if (remark != null && remark.length() > 1) {
             element.addJavaDocLine(" * " + remark);
-            element.addJavaDocLine(" *");
         }
 
-        element.addJavaDocLine(" * Table:     " + introspectedTable.getFullyQualifiedTable());
         element.addJavaDocLine(" * Column:    " + introspectedColumn.getActualColumnName());
         element.addJavaDocLine(" * Nullable:  " + introspectedColumn.isNullable());
         element.addJavaDocLine(" */");
@@ -187,10 +188,10 @@ public class CommentPlugin extends PluginAdapter {
     }
 
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
-        document.getRootElement().addElement(new TextElement(""));
-        document.getRootElement().addElement(new TextElement("<!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + " ### -->\n\n\n"));
-        document.getRootElement().addElement(new TextElement("<!-- Your codes goes here!!! -->"));
-        document.getRootElement().addElement(new TextElement(""));
+//        document.getRootElement().addElement(new TextElement(""));
+//        document.getRootElement().addElement(new TextElement("<!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + " ### -->\n\n\n"));
+//        document.getRootElement().addElement(new TextElement("<!-- Your codes goes here!!! -->"));
+//        document.getRootElement().addElement(new TextElement(""));
         return true;
     }
 }
